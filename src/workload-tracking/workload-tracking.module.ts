@@ -9,6 +9,7 @@ import { WorkloadTrackingController } from './workload-tracking.controller';
     TypeOrmModule.forFeature([Staff])
   ],
   providers: [WorkloadTrackingService],
-  controllers: [WorkloadTrackingController]
+  controllers: [WorkloadTrackingController],
+  exports: [WorkloadTrackingService]  
 })
 export class WorkloadTrackingModule {}

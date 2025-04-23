@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ServiceFacadeService } from './service-facade.service';
 import { WorkloadTrackingModule } from 'src/workload-tracking/workload-tracking.module';
+import { PatientRegisterModule } from 'src/patient-register/patient-register.module'; 
 
 @Module({
   imports: [
-    WorkloadTrackingModule
+    WorkloadTrackingModule,
+    PatientRegisterModule  
   ],
-  providers: [ServiceFacadeService]
+  providers: [ServiceFacadeService],
+  exports: [ServiceFacadeService]
 })
 export class ServiceFacadeModule {}

@@ -12,7 +12,12 @@ export class Staff {
     id: number;
     @Column()
     name: string;
-    @Column({ type: 'enum', enum: StaffType })
+    @Column({           //CHANGE
+        // type: 'enum', 
+        type: 'varchar', 
+        enum: StaffType, 
+        default: StaffType.OTHER
+    })
     type: StaffType;
     @OneToMany(() => Schedule, (schedule) => schedule.staffInfo, { cascade: true })
     schedules: Schedule[];
