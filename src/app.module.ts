@@ -7,6 +7,7 @@ import { WorkloadTrackingModule } from './workload-tracking/workload-tracking.mo
 import { Patient } from './entities/patient.entity'; 
 import { Staff, ScheduleAppointment, Doctor, Nurse } from './entities/staff.entity'; 
 import { PatientRegisterModule } from './patient-register/patient-register.module';
+import { PatientMedicalHistoryModule } from './patient-medical-history/patient-medical-history.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { PatientRegisterModule } from './patient-register/patient-register.modul
     ServiceFacadeModule,
     WorkloadTrackingModule,
     PatientRegisterModule,
+    PatientMedicalHistoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
