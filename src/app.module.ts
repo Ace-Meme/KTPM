@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServiceFacadeModule } from './service-facade/service-facade.module';
 import { WorkloadTrackingModule } from './workload-tracking/workload-tracking.module';
 import { Patient } from './entities/patient.entity'; 
-import { Staff,Schedule } from './entities/staff.entity'; 
+import { Staff, ScheduleAppointment, Doctor, Nurse } from './entities/staff.entity'; 
 import { PatientRegisterModule } from './patient-register/patient-register.module';
 
 @Module({
@@ -16,7 +16,9 @@ import { PatientRegisterModule } from './patient-register/patient-register.modul
       entities: [
         Patient,     
         Staff,
-        Schedule,      
+        ScheduleAppointment,    
+        Doctor,
+        Nurse  
       ],
       synchronize: true,
       //autoLoadEntities: true,
