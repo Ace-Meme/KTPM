@@ -14,4 +14,3 @@ export class ServiceFacadeService {
     return await this.patientRegisterService.registerPatient(data);
   }
 }
-
