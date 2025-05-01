@@ -8,7 +8,7 @@ import { Patient } from './entities/patient.entity';
 import { Staff, ScheduleAppointment, Doctor, Nurse } from './entities/staff.entity'; 
 import { PatientRegisterModule } from './patient-register/patient-register.module';
 import { PatientMedicalHistoryModule } from './patient-medical-history/patient-medical-history.module';
-
+import { PatientRecord } from './entities/patient-record.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -19,7 +19,8 @@ import { PatientMedicalHistoryModule } from './patient-medical-history/patient-m
         Staff,
         ScheduleAppointment,    
         Doctor,
-        Nurse  
+        Nurse ,
+        PatientRecord, 
       ],
       synchronize: true,
       //autoLoadEntities: true,

@@ -53,10 +53,10 @@ describe('PatientRecordController', () => {
     expect(mockService.findOne).toHaveBeenCalledWith(1);
   });
 
+  // Updated the test case to remove the `doctorID` field from the `CreatePatientRecordDto` object
   it('should create a new record', async () => {
     const createDto: CreatePatientRecordDto = {
       patientID: 1,
-      doctorID: 2,
       diagnosis: 'Test Diagnosis',
       recordDate: new Date(),
       description: undefined, // Explicitly include optional properties

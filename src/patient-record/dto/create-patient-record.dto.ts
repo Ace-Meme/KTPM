@@ -5,10 +5,6 @@ export class CreatePatientRecordDto {
   @IsNotEmpty()
   patientID: number; 
 
-  @IsNumber()
-  @IsNotEmpty()
-  doctorID: number; 
-
   @IsString()
   @IsOptional()
   description?: string; 
