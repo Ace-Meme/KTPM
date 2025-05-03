@@ -1,10 +1,13 @@
-import { Entity, PrimaryColumn, ManyToOne, JoinColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, ManyToOne, JoinColumn, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { Patient } from './patient.entity';
 
 @Entity()
 export class PatientRecord {
-  @PrimaryColumn()
-  patientID: number; 
+  @PrimaryGeneratedColumn()
+  id: number; // Auto-generated primary key
+
+  @Column()
+  patientID: number; // Foreign key to the patient table
   @ManyToOne(() => Patient)
   @JoinColumn({ name: 'patientID' })
   patient: Patient;
