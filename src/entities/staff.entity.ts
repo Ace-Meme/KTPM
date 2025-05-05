@@ -60,6 +60,8 @@ export class Staff {
 
   @OneToMany(() => ScheduleAppointment, (appointment) => appointment.staff, { cascade: true })
   schedules: ScheduleAppointment[];
+  @OneToMany(() => WorkingSchedule, (schedule) => schedule.staff, { cascade: true })
+  workingSchedules: WorkingSchedule[];
 }
 
 @ChildEntity()
@@ -106,4 +108,24 @@ export class ScheduleAppointment {
 
   @ManyToOne(() => Staff, (staff) => staff.schedules, { onDelete: 'CASCADE' })
   staff: Staff;
+}
+@Entity()
+export class WorkingSchedule {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @ManyToOne(() => Staff, (staff) => staff.workingSchedules)
+  staff: Staff;
+
+  @Column()
+  dayOfWeek: number; // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+  @Column()
+  startTime: number; // Giờ bắt đầu (6 = 6 AM, 13 = 1 PM, v.v.)
+
+  @Column()
+  endTime: number; // Giờ kết thúc
+
+  @Column({ nullable: true })
+  isDayOff: boolean; // Có phải là ngày nghỉ không
 }
