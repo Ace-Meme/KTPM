@@ -7,12 +7,6 @@ import { Repository } from 'typeorm';
 export class WorkloadTrackingService {
     constructor(@InjectRepository(Staff) private staffRepository: Repository<Staff>) {}
 
-    detectFirstDayOfWeek(date: Date): Date {
-        const dayOfWeek = date.getDay(); // 0 (Sunday) to 6 (Saturday)
-        const firstDayOfWeek = new Date(date);
-        firstDayOfWeek.setDate(date.getDate() - dayOfWeek);
-        return firstDayOfWeek;
-    }
     async trackingWorkloadOfDay(dayOfWeek: Date, staffId: number){
         let staff = await this.staffRepository.findOne({where: {id: staffId}, relations: {schedules: true}});
         
@@ -41,30 +35,5 @@ export class WorkloadTrackingService {
             }
         }
         return result;
-    }
-    async trackingWorkloadOfWeek(dayOfWeek: Date, staffId: number){
-        let firstDayOfWeek = this.detectFirstDayOfWeek(dayOfWeek);
-        let staff = await this.staffRepository.findOne({where: {id: staffId}, relations: {schedules: true}});
-
-        if(!staff){
-            throw new BadRequestException(`Staff with id ${staffId} not found`);
-        }
-
-        let result = { week : firstDayOfWeek, staffId: staffId, description: 'Workload from 6am to 6pm everyday', workload: [] };
-        for(let i = 0; i < 7; i++){
-            let workload = "000000000000"
-            let currentDate = new Date(firstDayOfWeek);
-            currentDate.setDate(firstDayOfWeek.getDate() + i);
-            for(let j = 0; j < staff.schedules.length; j++){
-                let schedule = staff.schedules[j];
-                if(schedule.date.getTime() === currentDate.getTime()){
-                    let startTime = schedule.startTime;
-                    let endTime = schedule.endTime;
-                    for(let k = startTime; k < endTime; k++){
-                        workload = workload.substring(0, k) + '1' + workload.substring(k+1);
-                    }
-                }
-            }
-        }
     }
 }
