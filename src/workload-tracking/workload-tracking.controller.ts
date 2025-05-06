@@ -10,6 +10,6 @@ export class WorkloadTrackingController {
     ) {}
     @Post('dayOfWeek')
     async getWorkloadOfDay(@Body() body: WorkloadDTO) {
-        return this.workloadTrackingService.trackingWorkloadOfDay(new Date(body.date), body.staffId);
+        return this.workloadTrackingService.trackingWorkloadOfDay(body.date, body.staffId);
     }
 }

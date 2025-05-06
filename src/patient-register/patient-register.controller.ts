@@ -2,6 +2,7 @@ import { Controller, Post, Body, HttpStatus } from '@nestjs/common';
 import { IsEmail, IsNotEmpty, IsOptional, IsString, IsDate } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PatientRegisterService, PatientRegistrationResult } from './patient-register.service';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class RegisterPatientDto {
   @IsString()
@@ -31,11 +32,17 @@ export class RegisterPatientDto {
 }
 
 export class PatientRegisteredResponseDto {
+  @ApiProperty()
   id: string;
+  @ApiProperty()
   firstName: string;
+  @ApiProperty()
   lastName: string;
+  @ApiProperty()
   email: string;
+  @ApiProperty()
   createdAt: Date;
+  @ApiProperty()
   message: string;
 }
 

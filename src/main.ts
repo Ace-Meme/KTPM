@@ -12,7 +12,7 @@ async function bootstrap() {
     .setDescription('The Architecture API description')
     .setVersion('1.0')
     .build();
-  
+  app.enableCors({origin: '*'});
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
   await app.listen(process.env.PORT ?? 3000);
